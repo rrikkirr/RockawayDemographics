@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<!-- legend -->
+<head>
+<meta charset=utf-8 />
+<title>Custom legend</title>
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+<style>
+.legend label,
+.legend span {
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:9px;
+  color:#9E9C9C;
+  }
+</style>
+
+<!-- Set the display of this container to none so we can
+     add it programmatically to `legendControl` -->
+<div id='legend' style='display:none;'>
+  <center><font size="4"><strong>Predominant Populations in NYC: Before and After Hurricane Sandy</strong></font><br><br></center>
+  <font size="2">White</font>
+  <nav class='legend clearfix'>
+    <span style='background:#f0f4ff;'></span>
+    <span style='background:#bcd6e7;'></span>
+    <span style='background:#6bafd6;'></span>
+    <span style='background:#08519c;'></span><br>
+    <label>25%</label>
+    <label>50%</label>
+    <label>75%</label>
+    <label>100%</label> <br>
+    <!-- <small>Source: <a href="#link to source">Name of source</a></small> -->
+    <font size="2">Black</font>
+  <nav class='legend clearfix'>
+    <span style='background:#feecdc;'></span>
+    <span style='background:#fdc086;'></span>
+    <span style='background:#fd8b3a;'></span>
+    <span style='background:#e7560d;'></span><br>
+    <label>25%</label>
+    <label>50%</label>
+    <label>75%</label>
+    <label>100%</label> <br>
+    <font size="2">Latino</font>
+  <nav class='legend clearfix'>
+    <span style='background:#ecf8e8;'></span>
+    <span style='background:#d5f1d0;'></span>
+    <span style='background:#74c376;'></span>
+    <span style='background:#55b958;'></span><br>
+    <label>25%</label>
+    <label>50%</label>
+    <label>75%</label>
+    <label>100%</label> <br>
+    <font size="2">Asian</font>
+  <nav class='legend clearfix'>
+    <span style='background:#f1eef6;'></span>
+    <span style='background:#cccae2;'></span>
+    <span style='background:#9d99c7;'></span>
+    <span style='background:#766cb2;'></span><br>
+    <label>25%</label>
+    <label>50%</label>
+    <label>75%</label>
+    <label>100%</label> <br><br>
+    <center><font size="5"><strong>2010 | 2015</strong></font></center>
+</div>
+<div id='map' class='dark'></div>
+
+<script>
+  var map = L.mapbox.map('map', 'examples.map-y7l23tes');
+  map.legendControl
+    .addLegend(document.getElementById('legend').innerHTML)
+    .setPosition('topright');
+</script>
+
+
+</body>
+<!-- swipe map -->
+<body>
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    body * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js"></script>
+<link
+    rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css"
+    type="text/css"
+/>
+<div id="comparison-container">
+    <div id="before" class="map"></div>
+    <div id="after" class="map"></div>
+</div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JpaGFsYWtzaG1pIiwiYSI6ImNrNmhldWZsYzE3bDYzbHA2OTRzNGE4eHkifQ.D3NXSa0WKVqiUvnwmJaJIQ';
+    var beforeMap = new mapboxgl.Map({
+        container: 'before',
+        style: 'mapbox://styles/grihalakshmi/ck8sd0xmo15or1imqpnskb7a4',
+				center: [-73.825, 40.585],
+        zoom: 11.55
+
+    });
+
+    var afterMap = new mapboxgl.Map({
+        container: 'after',
+        style: 'mapbox://styles/grihalakshmi/ck8to9kg60ktq1inxriyikgtp',
+        center: [-73.825, 40.585],
+        zoom: 11.55
+
+
+    });
+
+    // A selector or reference to HTML element
+    var container = '#comparison-container';
+
+    var map = new mapboxgl.Compare(beforeMap, afterMap, container, {
+        // Set this to enable comparing two maps by mouse movement:
+        // mousemove: true
+    });
+</script>
+</body>
+</html>
